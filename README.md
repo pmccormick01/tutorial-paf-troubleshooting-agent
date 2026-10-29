@@ -20,7 +20,6 @@ Build a simple CI pipeline for a Python Order Service, then use an AI agent in O
 10. [Build the PAF agent workflow](#7-build-the-paf-agent-workflow)
 11. [Run the demonstration](#8-run-the-demonstration)
 12. [Troubleshooting and operations](#troubleshooting-and-operations)
-13. [Security and publication checklist](#security-and-publication-checklist)
 
 ## Architecture
 
@@ -486,18 +485,6 @@ podman logs -f ai-devops-mcp 2>&1 | grep --line-buffered 'MCP TOOL'
 ```
 
 `podman logs -f` only follows output; **Ctrl+C** stops following, not the container. Use `podman ps`, **not** `sudo podman ps`, for the rootless containers.
-
-## Security and publication checklist
-
-- [ ] No private keys, certificates directory, credentials, auth tokens, session cookies, or real `.env` files are tracked by Git.
-- [ ] The README and source use placeholder OCIDs and addresses rather than your tenancy's resource identifiers.
-- [ ] `.containerignore` excludes certificate and environment files from the image build context.
-- [ ] MCP tools remain read-only; build IDs are validated against the configured pipeline.
-- [ ] The TLS certificate hostname matches the internal MCP DNS name; PAF trusts the issuing CA.
-- [ ] Any application-wide private-outbound policy relaxation is clearly identified as **demo-only**.
-- [ ] The recording does not reveal SSH keys, PAF cookies, sensitive logs, or private configuration.
-- [ ] The final demo application is restored to its working discount calculation.
-- [ ] Documentation reflects the actual files and OCI Console settings used in your environment.
 
 ## Further reading
 
