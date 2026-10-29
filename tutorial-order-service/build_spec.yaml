@@ -1,0 +1,23 @@
+
+version: 0.1
+component: build
+timeoutInSeconds: 1200
+shell: bash
+failImmediatelyOnError: true
+
+steps:
+  - type: Command
+    name: Test package connectivity
+    command: |
+      python3 --version
+      python3 -m pip --isolated --proxy "" index versions uvicorn
+
+  - type: Command
+    name: Install dependencies
+    command: |
+      python3 -m pip --isolated --proxy "" install -r requirements-dev.txt
+
+  - type: Command
+    name: Run unit tests
+    command: |
+      python3 -m pytest tests/ -v
